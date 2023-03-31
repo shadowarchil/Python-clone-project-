@@ -13,7 +13,6 @@
       <p>{{ profile.bio }}</p>
       <hr>
       <div class="card-body">
-        <h5 class="card-title">{{ user.username }}</h5>
         <p class="card-text"><strong>Name:</strong> {{ profile.first_name }} . {{ profile.last_name }}</p>
         <p class="card-text"><strong>Questions asked:</strong> {{ user.get_num_questions }}</p>
         <p class="card-text"><strong>Answers:</strong> {{ user.answer_set.count }}</p>
@@ -24,11 +23,6 @@
         {% csrf_token %}
         <div class="form-group">
           <label for="{{ form.avatar.id_for_label }}"></label>
-          <div class="input-group">
-            <div class="custom-file">
-              {{ form.avatar }}
-            </div>
-          </div>
           {% if profile.avatar %}
           <div class="mt-2">
             <img src="{{ profile.avatar.url }}" class="img-thumbnail" style="max-width: 200px">
