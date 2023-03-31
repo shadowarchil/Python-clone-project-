@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button class="btn btn-success">Confirm</button>
+    <a href="{% url 'core:question-detail' question.pk %}" class="btn btn-primary">Go Back</a>
+</form>
+{% endblock content %}

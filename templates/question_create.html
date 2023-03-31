@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Ask a Question</h1>
+<section class="bg-transparent p-3 rounded shadow-lg" style="backdrop-filter: blur(1rem)">
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button class='btn btn-primary'>Ask</button>
+    </form>
+</section>
+
+{% endblock content %}
