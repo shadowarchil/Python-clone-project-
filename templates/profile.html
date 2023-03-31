@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <h2>{{ user.username }}</h2>
+      </div>
+      <hr>
+      <h6>About Me</h6>
+      <p>{{ profile.bio }}</p>
+      <hr>
+      <div class="card-body">
+        <p class="card-text"><strong>Name:</strong> {{ profile.first_name }} . {{ profile.last_name }}</p>
+        <p class="card-text"><strong>Questions asked:</strong> {{ user.get_num_questions }}</p>
+        <p class="card-text"><strong>Answers:</strong> {{ user.answer_set.count }}</p>
+        <p class="card-text"><strong>Total views:</strong> {{ user.get_total_question_views }}</p>
+      </div>
+      {% if request.user == user %}
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="{{ form.avatar.id_for_label }}"></label>
+          {% if profile.avatar %}
+          <div class="mt-2">
+            <img src="{{ profile.avatar.url }}" class="img-thumbnail" style="max-width: 200px">
+          </div>
+          {% endif %}
+        </div>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </form>
+      {% else %}
+      {% if profile.avatar %}
+      <div class="mt-2">
+        <img src="{{ profile.avatar.url }}" class="img-thumbnail" style="max-width: 200px">
+      </div>
+      {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=viewport, initial-scale=1.0">
+    <title>Stackoverflow</title>
+</head>
+
+<body>
+    <h1>Home</h1>
+
+    {% for question in object_list %}
+    <div>
+        <ul>
+            <li>{{ question.vote_set.all|length }} Vote</li>
+            <li>{{ question.answer_set.all|length }} Answer</li>
+            <li>{{ question.views }} Views</li>
+        </ul>
+        <a href="#">{{ question.title }}</a>
+        <p>{{ question.text }}</p>
+        <p>{{ question.user }}</p>
+    </div>
+    {% endfor %}
+</body>
+
+</html>
